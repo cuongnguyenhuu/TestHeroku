@@ -85,7 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	                        .permitAll()
 	                    .antMatchers("/account/login","/account/signup")
 	                        .permitAll()
-	                    .antMatchers("/items/**")
+	                    .antMatchers("/items/unauth/**").permitAll()
+	                    .antMatchers("/items/auth/**")
 	                        .authenticated();
 
 	        // Add our custom JWT security filter

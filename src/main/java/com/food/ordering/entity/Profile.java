@@ -20,7 +20,7 @@ public class Profile implements Serializable {
 	private int profile_id;
 	@OneToOne
 	@JoinColumn(name="user_id")
-	private User user_id;
+	private User userId;
 	private String restaurant_name;
 	private String address;
 	private Date birth;
@@ -38,10 +38,10 @@ public class Profile implements Serializable {
 		this.profile_id = profile_id;
 	}
 	public User getUser_id() {
-		return user_id;
+		return userId;
 	}
 	public void setUser_id(User user_id) {
-		this.user_id = user_id;
+		this.userId = user_id;
 	}
 	public String getRestaurant_name() {
 		return restaurant_name;

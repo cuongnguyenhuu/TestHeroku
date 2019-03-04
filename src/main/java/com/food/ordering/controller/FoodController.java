@@ -22,12 +22,12 @@ public class FoodController {
 	@Autowired
 	private ItemService itemService;
 	
-	@GetMapping("")
+	@GetMapping("/unauth")
 	public ResponseEntity<Food> getAll(){
 		return new ResponseEntity(itemService.getAllFood(),HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/unauth/{id}")
 	public ResponseEntity<Food> getItemById(@PathVariable("id")Integer id){
 		if(itemService.findFoodById(id)==null) {
 			return new ResponseEntity("Item not found",HttpStatus.NOT_FOUND);
@@ -35,12 +35,12 @@ public class FoodController {
 		return new ResponseEntity(itemService.findFoodById(id),HttpStatus.OK);
 	}
 	
-	@PostMapping("/addItem")
+	@PostMapping("auth/addItem")
 	public ResponseEntity<Food> addItem(@RequestBody Food food){
 		return new ResponseEntity(itemService.createFood(food),HttpStatus.OK);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("auth/update")
 	public ResponseEntity<Food> update(@RequestBody Food food){
 		if(itemService.findFoodById(food.getFood_id())==null) {
 			return new ResponseEntity("Item not found",HttpStatus.NOT_FOUND);
@@ -48,7 +48,7 @@ public class FoodController {
 		else return new ResponseEntity(itemService.createFood(food),HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("auth/{id}")
 	public ResponseEntity<Food> delete(@PathVariable("id")Integer id){
 		if(itemService.deleteFood(id)) {
 			return new ResponseEntity("Delete "+id+" success",HttpStatus.OK);
